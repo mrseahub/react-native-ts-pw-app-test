@@ -1,0 +1,26 @@
+export const strings = {
+		userName:'Your name',
+		email:'E-mail',
+		password:'Password',
+		confirmPassword: 'Confirm password',
+		login: 'Login',
+		send: 'Send',
+		registration: 'Registration',
+		error:'Error',
+		yourBalance: 'Your balance',
+		connect: 'Something went wrong, check your internet connection',
+		requiredValues: 'All fields are required',
+		passwordVerify: 'Verification password and password do not match',
+		newTrans:'New Transaction',
+		retryPay:'Retry pay',
+		addPay:'Add pay',
+		recipient:'Recipient',
+		amount: 'Amount',
+
+		baseUrl:'http://193.124.114.46:3001/',
+		loginUrl: 'sessions/create',
+		registrationUrl: 'users',
+		transactionsUrl: 'api/protected/transactions',
+		userUrl:'api/protected/user-info',
+		filtredUsersUrl:'api/protected/users/list'
+}
