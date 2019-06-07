@@ -1,4 +1,4 @@
-import { createStackNavigator, NavigationComponent } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation';
 import { strings } from '../common/strings';
 import { MainScreen, AddTransScreen } from '../screens';
 import { stackConfig } from './configs';

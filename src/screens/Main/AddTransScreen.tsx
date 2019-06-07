@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { View } from 'react-native';
 import { userAutoComplete, userSendTrans } from '../../common/api';
 import { strings } from '../../common/strings';
 import { Form, FormData } from '../../components';
@@ -57,14 +56,12 @@ export class AddTransScreenComp extends React.Component<
 
 	render() {
 		return (
-			<View>
-				<Form
-					isFetch={this.state.isFetch}
-					inputs={inputs(this.props)}
-					onSubmit={this.handleOnSendTrans}
-					buttonLabel={strings.send}
-				/>
-			</View>
+			<Form
+				isFetch={this.state.isFetch}
+				inputs={inputs(this.props)}
+				onSubmit={this.handleOnSendTrans}
+				buttonLabel={strings.send}
+			/>
 		);
 	}
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert, Button, View } from 'react-native';
+import { Alert, Button } from 'react-native';
 import { userGetInfo, userLogin } from '../../common/api';
 import { strings } from '../../common/strings';
 import { Form, FormData, IFormInput } from '../../components';

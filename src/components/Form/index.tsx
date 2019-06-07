@@ -7,7 +7,6 @@ import {
 	ActivityIndicator,
 	StyleSheet,
 	TouchableOpacity,
-	ScrollView
 } from 'react-native';
 import {
 	FormData,

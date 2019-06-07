@@ -1,8 +1,14 @@
 import React from 'react';
-import { View, Alert } from 'react-native';
+import { Alert } from 'react-native';
 import { strings } from '../../common/strings';
 import { Form, IFormInput, FormData } from '../../components';
-import { IUserViewProps, UserInfoData, IUserSendData, UserToken, NavigationNames } from '../../types';
+import {
+	IUserViewProps,
+	UserInfoData,
+	IUserSendData,
+	UserToken,
+	NavigationNames
+} from '../../types';
 import { userReg, userGetInfo } from '../../common/api';
 
 const inputs = [
@@ -14,7 +20,7 @@ const inputs = [
 	{
 		key: 'email',
 		label: strings.email,
-		keyboardType:'email-address',
+		keyboardType: 'email-address',
 		returnKeyType: 'next'
 	},
 	{
@@ -50,7 +56,10 @@ export class RegScreenComp extends React.Component<IUserViewProps, any> {
 		userReg({ username, email, password } as IUserSendData)
 			.then(({ id_token }: UserToken) =>
 				userGetInfo(id_token).then((data: UserInfoData) => {
-					this.props.userSetData({...data.user_info_token, id_token} as any);
+					this.props.userSetData({
+						...data.user_info_token,
+						id_token
+					} as any);
 					this.setState({ isFetch: false });
 					this.props.navigation.navigate(
 						NavigationNames.MAIN_NAVIGATOR
@@ -65,13 +74,11 @@ export class RegScreenComp extends React.Component<IUserViewProps, any> {
 
 	render() {
 		return (
-			<View>
-				<Form
-					inputs={inputs}
-					onSubmit={this.handleOnReg}
-					buttonLabel={strings.registration}
-				/>
-			</View>
+			<Form
+				inputs={inputs}
+				onSubmit={this.handleOnReg}
+				buttonLabel={strings.registration}
+			/>
 		);
 	}
 }
