@@ -7,6 +7,7 @@ import {
 	ActivityIndicator,
 	StyleSheet,
 	TouchableOpacity,
+	Platform,
 } from 'react-native';
 import {
 	FormData,
@@ -61,10 +62,8 @@ export class Form extends React.PureComponent<IFormProps, IFormState> {
 	};
 
 	renderAutoComplete = (i: number) => {
-		const input = this.inputs[i];
 		const inputProps = this.props.inputs[i];
 		if (
-			input &&
 			inputProps &&
 			inputProps.autoComplete &&
 			this.state.autoCompleteData.length &&
@@ -145,6 +144,7 @@ export class Form extends React.PureComponent<IFormProps, IFormState> {
 				<View style={styles.buttonContainer}>
 					{this.renderButton()}
 				</View>
+				{this.props.footerComponent ? this.props.footerComponent : null}
 			</View>
 		);
 	}
@@ -160,10 +160,11 @@ const styles = StyleSheet.create({
 	},
 	input: {
 		fontSize: 14,
-		height: 30
+		height: Platform.OS === 'ios' ? 30 : 40
 	},
 	buttonContainer: {
 		height: 40,
+		marginBottom: 10,
 		justifyContent: 'center'
 	},
 	autoCompleteContainer: {

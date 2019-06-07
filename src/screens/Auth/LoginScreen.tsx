@@ -3,14 +3,20 @@ import { Alert, Button } from 'react-native';
 import { userGetInfo, userLogin } from '../../common/api';
 import { strings } from '../../common/strings';
 import { Form, FormData, IFormInput } from '../../components';
-import { IUserSendData, IUserViewProps, NavigationNames, UserInfoData, UserToken } from '../../types';
+import {
+	IUserSendData,
+	IUserViewProps,
+	NavigationNames,
+	UserInfoData,
+	UserToken
+} from '../../types';
 
 const inputs = [
 	{
 		key: 'email',
 		label: strings.email,
 		defaultValue: __DEV__ && 'test18364532@mail.ru',
-		keyboardType:'email-address',
+		keyboardType: 'email-address',
 		returnKeyType: 'next'
 	},
 	{
@@ -31,10 +37,13 @@ export class LoginScreenComp extends React.Component<IUserViewProps, any> {
 			.then(({ id_token }: UserToken) =>
 				userGetInfo(id_token).then((data: UserInfoData) => {
 					this.setState({ isFetch: false });
-					this.props.userSetData({...data.user_info_token, id_token} as any);
+					this.props.userSetData({
+						...data.user_info_token,
+						id_token
+					} as any);
 					this.props.navigation.navigate(
 						NavigationNames.MAIN_NAVIGATOR,
-						{userName: data.user_info_token.name}
+						{ userName: data.user_info_token.name }
 					);
 				})
 			)
@@ -50,18 +59,18 @@ export class LoginScreenComp extends React.Component<IUserViewProps, any> {
 
 	render() {
 		return (
-			<>
-				<Form
-					isFetch={this.state.isFetch}
-					inputs={inputs}
-					onSubmit={this.handleOnLogin}
-					buttonLabel={strings.login}
-				/>
-				<Button
-					title={strings.registration}
-					onPress={this.handleGoToReg}
-				/>
-			</>
+			<Form
+				isFetch={this.state.isFetch}
+				inputs={inputs}
+				onSubmit={this.handleOnLogin}
+				buttonLabel={strings.login}
+				footerComponent={
+					<Button
+						title={strings.registration}
+						onPress={this.handleGoToReg}
+					/>
+				}
+			/>
 		);
 	}
 }

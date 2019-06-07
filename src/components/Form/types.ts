@@ -13,6 +13,7 @@ export type FormData = {
 export interface IFormProps {
 	inputs: IFormInput[];
 	buttonLabel: string;
+	footerComponent?: React.ReactNode;
 	isFetch?: boolean;
 	onSubmit(data: FormData): void;
 }

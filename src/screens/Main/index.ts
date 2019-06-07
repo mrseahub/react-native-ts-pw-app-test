@@ -8,7 +8,7 @@ import { userSetData } from '../../redux/actions/userActions';
 
 export const MainScreen = connect(
 	(state: AppState) => ({ ...state.user, transactions: state.trans }),
-	dispatch => bindActionCreators({ transSetData }, dispatch)
+	dispatch => bindActionCreators({ transSetData, transAddData, userSetData }, dispatch)
 )(MainScreenComp);
 
 export const AddTransScreen = connect(

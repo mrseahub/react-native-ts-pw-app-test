@@ -181,7 +181,8 @@ const styles = StyleSheet.create({
 		flex: 1
 	},
 	itemTitle: {
-		fontSize: 14
+		fontSize: 14,
+		marginRight: 10,
 	},
 	itemNote: {
 		fontSize: 10
