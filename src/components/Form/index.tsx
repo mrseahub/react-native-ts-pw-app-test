@@ -1,20 +1,21 @@
 import * as React from 'react';
 import {
+	ActivityIndicator,
 	Button,
+	Platform,
+	StyleSheet,
 	Text,
 	TextInput,
-	View,
-	ActivityIndicator,
-	StyleSheet,
 	TouchableOpacity,
-	Platform,
+	View
 } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 import {
 	FormData,
 	IFormInput,
+	IFormInputAutoComplete,
 	IFormProps,
-	IFormState,
-	IFormInputAutoComplete
+	IFormState
 } from './types';
 export * from './types';
 
@@ -141,21 +142,33 @@ export class Form extends React.PureComponent<IFormProps, IFormState> {
 	};
 
 	public render() {
+		const paddingBottom =
+			this.state.autoCompleteData.length *
+			styles.autoCompleteContainer.height;
 		return (
-			<View style={styles.container}>
-				{this.props.inputs.map(this.renderInput)}
-				<View style={styles.buttonContainer}>
-					{this.renderButton()}
+			<ScrollView
+				showsVerticalScrollIndicator={false}
+				overScrollMode="always"
+			>
+				<View style={[styles.container, { paddingBottom }]}>
+					{this.props.inputs.map(this.renderInput)}
+					<View style={styles.buttonContainer}>
+						{this.renderButton()}
+					</View>
+					{this.props.footerComponent
+						? this.props.footerComponent
+						: null}
 				</View>
-				{this.props.footerComponent ? this.props.footerComponent : null}
-			</View>
+			</ScrollView>
 		);
 	}
 }
 
 const styles = StyleSheet.create({
 	container: {
-		margin: 20
+		flex: 1,
+		margin: 20,
+		marginBottom: 0
 	},
 	inputContainer: {
 		marginBottom: 10,
@@ -169,9 +182,10 @@ const styles = StyleSheet.create({
 		height: 40,
 		marginBottom: 10,
 		justifyContent: 'center',
-		zIndex:-1
+		zIndex: -1
 	},
 	autoCompleteContainer: {
+		height: 60,
 		top: 0,
 		left: 0,
 		backgroundColor: 'white',
