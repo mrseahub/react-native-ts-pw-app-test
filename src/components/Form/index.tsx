@@ -66,6 +66,7 @@ export class Form extends React.PureComponent<IFormProps, IFormState> {
 		if (
 			inputProps &&
 			inputProps.autoComplete &&
+			this.state.autoCompleteData &&
 			this.state.autoCompleteData.length &&
 			this.state.focusedInputIndex === i
 		) {
@@ -118,7 +119,9 @@ export class Form extends React.PureComponent<IFormProps, IFormState> {
 					onFocus={() => this.setState({ focusedInputIndex: i })}
 					onEndEditing={() => this.handleOnEndEditing(i)}
 					style={styles.input}
-					{...input}
+					defaultValue={input.defaultValue}
+					keyboardType={input.keyboardType}
+					returnKeyType={input.returnKeyType}
 				/>
 				{this.renderAutoComplete(i)}
 			</View>
@@ -165,7 +168,8 @@ const styles = StyleSheet.create({
 	buttonContainer: {
 		height: 40,
 		marginBottom: 10,
-		justifyContent: 'center'
+		justifyContent: 'center',
+		zIndex:-1
 	},
 	autoCompleteContainer: {
 		top: 0,
